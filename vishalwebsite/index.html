@@ -1,0 +1,277 @@
+<?php
+
+$conn = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+
+if(isset($_POST['send'])){
+
+   $name = mysqli_real_escape_string($conn, $_POST['name']);
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $number = mysqli_real_escape_string($conn, $_POST['number']);
+   $msg = mysqli_real_escape_string($conn, $_POST['message']);
+
+   $select_message = mysqli_query($conn, "SELECT * FROM `contact_form` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$msg'") or die('query failed');
+   
+   if(mysqli_num_rows($select_message) > 0){
+      $message[] = 'message sent already!';
+   }else{
+      mysqli_query($conn, "INSERT INTO `contact_form`(name, email, number, message) VALUES('$name', '$email', '$number', '$msg')") or die('query failed');
+      $message[] = 'message sent successfully!';
+   }
+
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Complete Responsive Personal Portfolio Website Design</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+
+   <!-- aos css link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css\style.css">
+
+</head>
+<body>
+   
+
+<?php
+
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message" data-aos="zoom-out">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
+
+?>
+
+<!-- header section starts  -->
+
+<header class="header">
+
+   <div id="menu-btn" class="fas fa-bars"></div>
+
+   <a href="#home" class="logo">MENU</a>
+   <nav class="navbar">
+      <a href="#home" class="active">home</a>
+      <a href="#about">about</a>
+      <a href="#about">Skill</a>
+      <a href="#services">Project</a>
+      <a href="#services">Blog page</a>
+      <a href="#contact">contact</a>
+</br>
+</br> 
+</br>
+</br>
+</br>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+   </nav>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+   <div class="image" data-aos="fade-right">
+      <img src="images/user.jpg" alt="">
+   </div>
+
+   <div class="content">
+      <h3 data-aos="fade-up">hi, i am vishal</h3>
+      <span data-aos="fade-up">Software Engineer</span>
+
+      <a data-aos="fade-up" href="#about" class="btn">about me</a>
+   </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+   <h1 class="heading" data-aos="fade-up"> <span>biography</span> </h1>
+
+   <div class="biography">
+
+     
+
+      <div class="bio">
+         <h3 data-aos="zoom-in"> <span>name : </span> Vishal </h3>
+         <h3 data-aos="zoom-in"> <span>email : </span> vishal132gp@gmail.com </h3>
+         <h3 data-aos="zoom-in"> <span>address : </span> Vellore, india </h3>
+         <h3 data-aos="zoom-in"> <span>phone : </span> 6381827735 </h3>
+         <h3 data-aos="zoom-in"> <span>age : </span> 21 years </h3>
+         <h3 data-aos="zoom-in"> <span>Studying : </span> M.Tech</h3>
+      </div>
+
+      
+
+   </div>
+   
+   <div class="skills" data-aos="fade-up">
+
+      <h1 class="heading"> <span>skills</span> </h1>
+
+      <div class="progress">
+         <div class="bar" data-aos="fade-left"> <h3><span>HTML</span> <span>90%</span></h3> </div>
+         <div class="bar" data-aos="fade-left"> <h3><span>CSS</span> <span>80%</span></h3> </div>
+         <div class="bar" data-aos="fade-left"> <h3><span>JavaScript</span> <span>50%</span></h3> </div>
+         <div class="bar" data-aos="fade-leftt"> <h3><span>PHP</span> <span>70%</span></h3> </div>
+         <div class="bar" data-aos="fade-left"> <h3><span>JAVA</span> <span>90%</span></h3> </div>
+      </div>
+
+   </div>
+
+   <div class="edu-exp">
+
+      <h1 class="heading" data-aos="fade-up"> <span>Education </span> </h1>
+
+      <div class="row">
+
+         <div class="box-container">
+
+            <h3 class="title" data-aos="fade-right">education</h3>
+
+            <div class="box" data-aos="fade-right">
+               <span>()</span>
+               <h3>web designer</h3>
+               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat assumenda, eaque sequi repellat natus quia.</p>
+            </div>
+
+            <div class="box" data-aos="fade-right">
+               <span>( 2020 - 2021 )</span>
+               <h3>web developer</h3>
+               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat assumenda, eaque sequi repellat natus quia.</p>
+            </div>
+
+         
+
+         </div>
+
+         
+
+         </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- services section starts  -->
+
+
+
+<section class="services" id="services">
+
+   <h1 class="heading" data-aos="fade-up"> <span>Project</span> </h1>
+
+   <div class="box-container">
+
+      <div class="box" data-aos="zoom-in">
+         
+         <h3>web development</h3>
+         <p> Quiz App </p>
+      </div>
+
+      <div class="box" data-aos="zoom-in">
+         <h3>Java Project</h3>
+         <p>School management System </p>
+      </div>
+
+      
+
+   </div>
+
+</section>
+
+<section class="services" id="services">
+
+   <h1 class="heading" data-aos="fade-up"> <span>Blog</span> </h1>
+
+   <div class="box-container">
+
+      <div class="box" data-aos="zoom-in">
+         
+         <p> In this websites, i created the HomePage,About,Skills,project,& contact me  </p>
+      </div>
+
+
+
+      
+
+   </div>
+
+</section>
+
+
+<section class="contact" id="contact">
+
+   <h1 class="heading" data-aos="fade-up"> <span>contact me</span> </h1>
+
+   <form action="" method="post">
+      <div class="flex">
+         <input data-aos="fade-right" type="text" name="name" placeholder="enter your name" class="box" required>
+         <input data-aos="fade-left" type="email" name="email" placeholder="enter your email" class="box" required>
+      </div>
+      <input data-aos="fade-up" type="number" min="0" name="number" placeholder="enter your number" class="box" required>
+      <textarea data-aos="fade-up" name="message" class="box" required placeholder="enter your message" cols="30" rows="10"></textarea>
+      <input type="submit" data-aos="zoom-in" value="send message" name="send" class="btn">
+   </form>
+
+
+</section>
+
+<!-- contact section ends -->
+<div class="credit"> &copy; copyright @ <?php echo date('Y'); ?> by <span>mr. web designer</span> </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+<!-- aos js link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+
+   AOS.init({
+      duration:800,
+      delay:300
+   });
+
+</script>
+   
+</body>
+</html>
